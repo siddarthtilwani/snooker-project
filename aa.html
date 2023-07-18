@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snooker Club - Files</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .content {
+            margin: 20px;
+        }
+        
+        .file-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .file-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .file-form input[type="file"] {
+            margin-bottom: 10px;
+        }
+        
+        .file-form input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .file-form input[type="submit"]:hover {
+            background-color: #555;
+        }
+        
+        .file-list {
+            margin-top: 20px;
+        }
+        
+        .file-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .file-list li {
+            margin-bottom: 10px;
+        }
+        
+        .file-list a {
+            text-decoration: none;
+            color: #333;
+        }
+        .cta-button {
+            display: inline-block;
+            
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #555;
+        }
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Welcome to Snooker Club</h1>
+    </header>
+
+    <div class="content">
+        <h2>Files</h2>
+        <form class="file-form" action="#" method="post" enctype="multipart/form-data">
+            <label for="file">Upload File:</label>
+            <input type="file" id="file" name="file" required multiple>
+
+            <input type="submit" value="Upload">
+        </form>
+
+        <div class="file-list">
+            <h3>Uploaded Files</h3>
+            <ul id="file-list">
+                <!-- Files will be dynamically added here using JavaScript -->
+            </ul>
+            <div class="cta">
+                <a href="sonooker.html" class="cta-button">Click on Proceed</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        &copy; 2023 Snooker Club. All rights reserved.
+    </footer>
+
+    <script>
+        // JavaScript code for file upload functionality
+        const fileForm = document.querySelector('.file-form');
+        const fileList = document.getElementById('file-list');
+
+        fileForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const files = document.getElementById('file').files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const fileItem = document.createElement('li');
+                const fileLink = document.createElement('a');
+                fileLink.href = URL.createObjectURL(file);
+                fileLink.target = '_blank';
+                fileLink.textContent = file.name;
+                fileItem.appendChild(fileLink);
+                fileList.appendChild(fileItem);
+            }
+
+            fileForm.reset();
+        });
+    </script>
+</body>
+</html>
